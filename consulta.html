@@ -38,7 +38,7 @@
     <main class="container">
         <div class="row">
             <div class="col mb-4">
-                <h1 class="display-4">Nova despesa</h1>
+                <h1 class="display-4">Lista de despesas</h1>
             </div>
         </div>
 
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-8">
                 <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
             </div>
@@ -95,8 +95,27 @@
 
             <div class="col-md-2 d-flex justify-content-end">
                 <button type="button" class="btn btn-block btn-primary bg-purple">
-                    <i class="fa fa-plus"></i>
+                    <i class="fa fa-search"></i>
                 </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
