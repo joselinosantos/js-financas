@@ -25,3 +25,5 @@ Sisteminha para gerenciamento de receitas e despesas
 4.3 Criar classe Db e mover a função gravar para ela
 
 4.4 Identificador único para cada registro
+
+5 Validações

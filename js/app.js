@@ -7,6 +7,15 @@ class Despesa {
         this.descricao = descricao
         this.valor = valor
     }
+
+    validarDados() {
+        for (let atributo in this) {
+            if (this[atributo] == undefined || this[atributo] == '' || this[atributo] == null) {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 class Db {
@@ -49,5 +58,10 @@ function cadastrarDespesa() {
         valor.value
     )
 
-    bd.salvar(despesa)
+    if (despesa.validarDados()) {
+        bd.salvar(despesa)
+        // msg sucesso
+    } else {
+        // msg erro
+    }
 }
