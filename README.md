@@ -21,3 +21,7 @@ Sisteminha para gerenciamento de receitas e despesas
 4.1 Criar função para gravar, recebe parâmetro despesa.
 
 4.2 Converte o objeto recebido para JSON e executa a gravação.
+
+4.3 Criar classe Db e mover a função gravar para ela
+
+4.4 Identificador único para cada registro
