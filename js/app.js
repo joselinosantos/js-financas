@@ -60,8 +60,8 @@ function cadastrarDespesa() {
 
     if (despesa.validarDados()) {
         bd.salvar(despesa)
-        // msg sucesso
+        $('#modal-sucesso').modal('show')
     } else {
-        // msg erro
+        $('#modal-erro').modal('show')
     }
 }
