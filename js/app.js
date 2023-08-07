@@ -60,8 +60,34 @@ function cadastrarDespesa() {
 
     if (despesa.validarDados()) {
         bd.salvar(despesa)
-        $('#modal-sucesso').modal('show')
+
+        modalMessage()
     } else {
-        $('#modal-erro').modal('show')
+        modalMessage('erro')
+    }
+
+    $('#modal-cadastro').modal('show')
+}
+
+function modalMessage(tipo) {
+    let titulo = document.querySelector('.modal-titulo')
+    let texto = document.querySelector('.modal-body')
+    let btn = document.querySelector('.btn-modal')
+    let classesBtn = 'btn btn-modal'
+
+    if (tipo === 'erro') {
+        titulo.className = 'modal-titulo text-danger'
+        titulo.innerHTML = 'Erro na gravação!'
+        texto.innerHTML = 'Existem campos obrigatórios vazios!'
+
+        btn.className = classesBtn+' btn-danger'
+        btn.innerHTML = 'Voltar e corrigir'
+    } else {
+        titulo.className = 'modal-titulo text-success'
+        titulo.innerHTML = 'Sucesso na gravação!'
+        texto.innerHTML = 'Despesa cadastrada com sucesso!'
+
+        btn.className = classesBtn+' btn-success'
+        btn.innerHTML = 'OK'
     }
 }
