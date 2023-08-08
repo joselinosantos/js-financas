@@ -42,12 +42,7 @@ class Db {
 let bd = new Db()
 
 function cadastrarDespesa() {
-    let ano = document.getElementById('ano')
-    let mes = document.getElementById('mes')
-    let dia = document.getElementById('dia')
-    let categoria = document.getElementById('categoria')
-    let descricao = document.getElementById('descricao')
-    let valor = document.getElementById('valor')
+    getCampos()
 
     let despesa = new Despesa(
         ano.value,
@@ -62,6 +57,7 @@ function cadastrarDespesa() {
         bd.salvar(despesa)
 
         modalMessage()
+        limparCampos()
     } else {
         modalMessage('erro')
     }
@@ -80,14 +76,34 @@ function modalMessage(tipo) {
         titulo.innerHTML = 'Erro na gravação!'
         texto.innerHTML = 'Existem campos obrigatórios vazios!'
 
-        btn.className = classesBtn+' btn-danger'
+        btn.className = classesBtn + ' btn-danger'
         btn.innerHTML = 'Voltar e corrigir'
     } else {
         titulo.className = 'modal-titulo text-success'
         titulo.innerHTML = 'Sucesso na gravação!'
         texto.innerHTML = 'Despesa cadastrada com sucesso!'
 
-        btn.className = classesBtn+' btn-success'
+        btn.className = classesBtn + ' btn-success'
         btn.innerHTML = 'OK'
     }
+}
+
+function getCampos() {
+    let ano = document.getElementById('ano')
+    let mes = document.getElementById('mes')
+    let dia = document.getElementById('dia')
+    let categoria = document.getElementById('categoria')
+    let descricao = document.getElementById('descricao')
+    let valor = document.getElementById('valor')
+}
+
+function limparCampos() {
+    getCampos()
+
+    ano.value = ''
+    mes.value = ''
+    dia.value = ''
+    categoria.value = ''
+    descricao.value = ''
+    valor.value = ''
 }
