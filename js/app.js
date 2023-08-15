@@ -20,22 +20,32 @@ class Despesa {
 
 class Db {
     constructor() {
-        let id = localStorage.getItem('id')
-
-        if (id === null) {
-            localStorage.setItem('id', 0)
-        }
     }
 
+    getAllKeys() {
+		let keys = Object.keys(localStorage)
+		let despesas = keys.filter(d => d.includes('despesa'))
+		return despesas
+	}
+
     getProximoId() {
-        let proximoId = localStorage.getItem('id')
-        return parseInt(proximoId) + 1
+        let keys = this.getAllKeys()
+        var id = 0
+        
+        if (keys.length > 0) {
+            let ids = []
+            keys.forEach((k) => {
+                ids.push(parseInt(k.split('despesa')[1]))
+            })
+            id = Math.max.apply(null, ids)
+            id += 1
+        }
+        return id
     }
 
     salvar(despesa) {
         let id = this.getProximoId()
-        localStorage.setItem(id, JSON.stringify(despesa))
-        localStorage.setItem('id', id)
+        localStorage.setItem('despesa'+id, JSON.stringify(despesa))
     }
 }
 
