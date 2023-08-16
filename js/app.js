@@ -23,15 +23,15 @@ class Db {
     }
 
     getAllKeys() {
-		let keys = Object.keys(localStorage)
-		let despesas = keys.filter(d => d.includes('despesa'))
-		return despesas
-	}
+        let keys = Object.keys(localStorage)
+        let despesas = keys.filter(d => d.includes('despesa'))
+        return despesas
+    }
 
     getProximoId() {
         let keys = this.getAllKeys()
         var id = 0
-        
+
         if (keys.length > 0) {
             let ids = []
             keys.forEach((k) => {
@@ -45,7 +45,24 @@ class Db {
 
     salvar(despesa) {
         let id = this.getProximoId()
-        localStorage.setItem('despesa'+id, JSON.stringify(despesa))
+        localStorage.setItem('despesa' + id, JSON.stringify(despesa))
+    }
+
+    listar() {
+        let despesas = []
+        let registros = this.getAllKeys()
+
+        for (let i = 0; i <= registros.length; i++) {
+            let despesa = JSON.parse(localStorage.getItem('despesa' + i))
+
+            if (despesa === null) {
+                continue
+            }
+
+            despesa.id = i
+            despesas.push(despesa)
+        }
+        return despesas
     }
 }
 
@@ -116,4 +133,32 @@ function limparCampos() {
     categoria.value = ''
     descricao.value = ''
     valor.value = ''
+}
+
+function listarDespesas(despesas = []) {
+    if (despesas.length == 0) {
+        despesas = bd.listar()
+    }
+
+    let listaDespesas = document.getElementById('lista-despesas')
+    listaDespesas.innerHTML = ""
+
+    despesas.forEach(function (d) {
+        let linha = listaDespesas.insertRow()
+
+        let categorias = {
+            '1': 'Alimentação',
+            '2': 'Educação',
+            '3': 'Lazer',
+            '4': 'Saúde',
+            '5': 'Transporte'
+        }
+
+        d.categoria = categorias[d.categoria]
+
+        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`
+        linha.insertCell(1).innerHTML = d.categoria
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = `R$ ${d.valor}`
+    })
 }
