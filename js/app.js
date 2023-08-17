@@ -64,6 +64,36 @@ class Db {
         }
         return despesas
     }
+
+    pesquisar(despesa) {
+		let despesasFiltradas = []
+		despesasFiltradas = this.listar()
+
+		if (despesa.ano != '') {
+			despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
+		}
+
+		if (despesa.mes != '') {
+			despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
+		}
+
+		if (despesa.dia != '') {
+			despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
+		}
+
+		if (despesa.categoria != '') {
+			despesasFiltradas = despesasFiltradas.filter(d => d.categoria == despesa.categoria)
+		}
+
+		if (despesa.descricao != '') {
+			despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao)
+		}
+
+		if (despesa.valor != '') {
+			despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor)
+		}
+		return despesasFiltradas
+	}
 }
 
 let bd = new Db()
@@ -135,15 +165,15 @@ function limparCampos() {
     valor.value = ''
 }
 
-function listarDespesas(despesas = []) {
-    if (despesas.length == 0) {
+function listarDespesas(despesas = [], filtro=false) {
+    if (despesas.length == 0 && filtro == false) {
         despesas = bd.listar()
     }
 
     let listaDespesas = document.getElementById('lista-despesas')
     listaDespesas.innerHTML = ""
 
-    despesas.forEach(function (d) {
+    despesas.forEach((d) => {
         let linha = listaDespesas.insertRow()
 
         let categorias = {
@@ -161,4 +191,13 @@ function listarDespesas(despesas = []) {
         linha.insertCell(2).innerHTML = d.descricao
         linha.insertCell(3).innerHTML = `R$ ${d.valor}`
     })
+}
+
+function pesquisarDespesas() {
+	getCampos()
+
+	let despesa = new Despesa(ano.value, mes.value, dia.value, categoria.value, descricao.value, valor.value)
+	let despesas = 	bd.pesquisar(despesa)
+
+	listarDespesas(despesas, true)
 }
