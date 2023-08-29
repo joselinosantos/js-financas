@@ -1,6 +1,8 @@
 # JS Finanças Pessoais
 Sisteminha para gerenciamento de receitas e despesas
 
+![JS Finanças](https://github.com/joselinosantos/js-financas/blob/main/img/financas.png)
+
 Acesse a aplicação: [JS Finanças](https://desenvolvedorjs.com/projetos/js-financas/)
 ## Projeto
 1 Criação do projeto
