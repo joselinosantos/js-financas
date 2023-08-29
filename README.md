@@ -1,6 +1,7 @@
 # JS Finanças Pessoais
 Sisteminha para gerenciamento de receitas e despesas
 
+Acesse a aplicação: [JS Finanças](https://desenvolvedorjs.com/projetos/js-financas/)
 ## Projeto
 1 Criação do projeto
 
@@ -27,3 +28,9 @@ Sisteminha para gerenciamento de receitas e despesas
 4.4 Identificador único para cada registro
 
 5 Validações
+
+6 Listar despesas
+
+7 Filtragem
+
+8 Exclusão
